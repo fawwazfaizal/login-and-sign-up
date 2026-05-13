@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/signup.css">
+    <script src="../javascript/signup.js" defer></script>
+    <title>Sign Up page</title>
+</head>
+    <body>
+        <h1>Sign Up</h1>
+        <form action="/signup" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+
+            <div class="terms">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the <a href="terms.html">Terms and Conditions</a></label>
+            </div>
+
+            <div class="captcha">
+                <input type="checkbox" id="captcha" name="captcha">
+                <label for="captcha">I'm not a robot 🤖</label>
+            </div>
+
+            <span id="message" style="color: red;"></span><br><br>
+
+            <button type="submit">Sign Up</button>
+
+           <p class="login-link">If you have an account, please use the <a href="login.html">Login</a> link to login your account.</p>
+        </form>
+    </body>
+</html>

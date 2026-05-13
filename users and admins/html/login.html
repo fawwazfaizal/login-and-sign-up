@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/login.css">
+    <script src="../javascript/login.js" defer></script>
+    <title>Login page</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form action="/login" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        Forgot your password? <a href="forgotpass.html">Click here</a> to reset it.<br><br>
+
+        <button type="submit">Login</button>
+
+        <p class="login-link">New to here? Please use the <a href="signup.html">Sign Up</a> link to create your account.</p>
+    </form>
+</body>
+</html>

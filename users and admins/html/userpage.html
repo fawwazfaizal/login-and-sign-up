@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Users Account</title>
+        <link rel="stylesheet" href="../css/userpage.css">
+        <script src="../javascript/userpage.js" defer></script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="header">
+                <h1>Welcome, <span id="usernameDisplay"></span>! 👋</h1>
+                <button class="logout-btn" id="logoutBtn">Logout</button>
+            </div>
+
+            <div class="cards">
+                <div class="card">
+                    <div class="card-icon">👤</div>
+                    <div class="card-title">Username</div>
+                    <div class="card-value" id="cardUsername"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📧</div>
+                    <div class="card-title">Email</div>
+                    <div class="card-value" id="cardEmail"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">✅</div>
+                    <div class="card-title">Account Status</div>
+                    <div class="card-value" id="cardStatus">Active</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📅</div>
+                    <div class="card-title">Member Since</div>
+                    <div class="card-value" id="cardDate"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
