@@ -1,3 +1,5 @@
+import { supabase } from './supabase.js'
+
 // Get the email from localStorage and display it
 const email = localStorage.getItem("resetEmail");
 const emailDisplay = document.getElementById("userEmail");

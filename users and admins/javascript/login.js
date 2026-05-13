@@ -1,7 +1,9 @@
-document.querySelector('form').addEventListener('submit', function(e) {
+import { supabase } from './supabase.js'
+
+document.querySelector('form').addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    const username = document.getElementById('username').value.trim();
+    const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
 
     let message = document.getElementById('message');
@@ -12,23 +14,26 @@ document.querySelector('form').addEventListener('submit', function(e) {
     }
 
     // Check admin first
-    if (username === 'admin' && password === 'admin123') {
-        localStorage.setItem('loggedInAdmin', JSON.stringify({ username }));
-        alert('✅ Welcome ' + username + '!');
+    if (email === 'admin@admin.com' && password === 'admin123') {
+        localStorage.setItem('loggedInAdmin', JSON.stringify({ username: 'admin' }));
+        alert('✅ Welcome Admin!');
         window.location.href = '../html/homepage.html';
         return;
     }
 
-    // Check normal user
-    const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
-    const user = existingUsers.find(u => u.username === username && u.password === password);
+    // Supabase login
+    const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password
+    })
 
-    if (user) {
-        localStorage.setItem('loggedInUser', JSON.stringify(user));
-        alert('✅ Login successful! Welcome, ' + username + '!');
-        window.location.href = '../html/userpage.html';
-    } else {
+    if (error) {
         message.style.color = 'red';
-        message.textContent = '❌ Invalid username or password!';
+        message.textContent = '❌ Invalid email or password!';
+        return;
     }
+
+    localStorage.setItem('loggedInUser', JSON.stringify(data.user));
+    alert('✅ Login successful! Welcome!');
+    window.location.href = '../html/userpage.html';
 });

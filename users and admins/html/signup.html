@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/signup.css">
-    <script src="../javascript/signup.js" defer></script>
+    <script src="../javascript/signup.js" type="module" defer></script>
     <title>Sign Up page</title>
 </head>
     <body>
         <h1>Sign Up</h1>
-        <form action="/signup" method="post">
+        <form>
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required><br><br>
 
@@ -36,7 +36,7 @@
 
             <button type="submit">Sign Up</button>
 
-           <p class="login-link">If you have an account, please use the <a href="login.html">Login</a> link to login your account.</p>
+            <p class="login-link">If you have an account, please use the <a href="login.html">Login</a> link to login your account.</p>
         </form>
     </body>
 </html>

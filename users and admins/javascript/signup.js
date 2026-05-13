@@ -1,4 +1,6 @@
-document.querySelector('form').addEventListener('submit', function(e) {
+import { supabase } from './supabase.js'
+
+document.querySelector('form').addEventListener('submit', async function(e) {
     e.preventDefault();
 
     const username = document.getElementById('username').value.trim();
@@ -9,46 +11,46 @@ document.querySelector('form').addEventListener('submit', function(e) {
     const captcha = document.getElementById('captcha').checked;
     const message = document.getElementById('message');
 
-    // Check captcha
     if (!captcha) {
+        message.style.color = 'red';
         message.textContent = '❌ Please verify you are not a robot!';
         return;
     }
-
-    // Check terms
     if (!terms) {
+        message.style.color = 'red';
         message.textContent = '❌ Please agree to the Terms and Conditions!';
         return;
     }
-
-    // Check passwords match
     if (password !== confirmPassword) {
+        message.style.color = 'red';
         message.textContent = '❌ Passwords do not match!';
         return;
     }
-
-    // Check password length
     if (password.length < 6) {
+        message.style.color = 'red';
         message.textContent = '❌ Password must be at least 6 characters!';
         return;
     }
 
-    // Check if username already exists
-    const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
-    const userExists = existingUsers.find(u => u.username === username);
-    if (userExists) {
-        message.textContent = '❌ Username already taken!';
+    // Supabase signup only - trigger handles users table automatically!
+    const { data, error } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+            data: { username: username }
+        }
+    })
+
+    if (error) {
+        message.style.color = 'red';
+        message.textContent = '❌ ' + error.message;
         return;
     }
 
-    // Save user to localStorage
-    existingUsers.push({ username, email, password });
-    localStorage.setItem('users', JSON.stringify(existingUsers));
-
-    // Success → go to login
+    // Success
     message.style.color = 'green';
-    message.textContent = '✅ Account created! Redirecting to login...';
+    message.textContent = '✅ Account created! Redirecting...';
     setTimeout(() => {
-        window.location.href = 'userpage.html';
+        window.location.href = '../html/userpage.html';
     }, 1500);
 });
