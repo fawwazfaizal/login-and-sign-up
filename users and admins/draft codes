@@ -149,4 +149,8 @@ document.querySelector('form').addEventListener('submit', async function(e) {
 });
 
 
+http://localhost:5500/users%20and%20admins/html/changepassword.html (1st one)
+http://127.0.0.1:5500/users%20and%20admins/html/changepassword.html (2nd))
+
+
 Third draft issues for signup.js

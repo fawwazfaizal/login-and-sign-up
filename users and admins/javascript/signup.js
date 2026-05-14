@@ -34,10 +34,11 @@ document.querySelector('form').addEventListener('submit', async function(e) {
 
     // Supabase signup only - trigger handles users table automatically!
     const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-        options: {
-            data: { username: username }
+    email: email,
+    password: password,
+    options: {
+        data: { username: username },
+        emailRedirectTo: 'http://127.0.0.1:5500/users%20and%20admins/html/login.html'
         }
     })
 

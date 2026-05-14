@@ -19,7 +19,7 @@ if (!admin) {
             return;
         }
 
-        users.forEach(function(user, index) {
+        users.forEach(function(user) {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${user.username || user.email}</td>
@@ -32,12 +32,23 @@ if (!admin) {
     }
 
     window.deleteUser = async function(id) {
+        const confirm = window.confirm('Are you sure you want to delete this user?');
+        if (!confirm) return;
+
+        // Delete from users table
+        // on delete cascade will handle auth.users too
         const { error } = await supabase
             .from('users')
             .delete()
             .eq('id', id)
 
-        if (!error) loadUsers();
+        if (error) {
+            alert('❌ ' + error.message);
+            return;
+        }
+
+        alert('✅ User deleted successfully!');
+        loadUsers();
     }
 
     document.getElementById('logoutBtn').addEventListener('click', function() {

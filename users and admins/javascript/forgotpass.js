@@ -8,8 +8,8 @@ form.addEventListener("submit", async function(e) {
     const email = document.getElementById("email").value;
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: 'http://localhost:5500/users%20and%20admins/html/changepassword.html'
-    })
+    redirectTo: 'http://127.0.0.1:5500/users%20and%20admins/html/changepassword.html'
+    });
 
     if (error) {
         alert('❌ ' + error.message);
