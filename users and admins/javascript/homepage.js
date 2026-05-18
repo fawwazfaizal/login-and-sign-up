@@ -32,24 +32,20 @@ if (!admin) {
     }
 
     window.deleteUser = async function(id) {
-        const confirm = window.confirm('Are you sure you want to delete this user?');
-        if (!confirm) return;
+    const confirm = window.confirm('Are you sure you want to delete this user?');
+    if (!confirm) return;
 
-        // Delete from users table
-        // on delete cascade will handle auth.users too
-        const { error } = await supabase
-            .from('users')
-            .delete()
-            .eq('id', id)
+    // Call the SQL function to delete from auth too!
+    const { error } = await supabase.rpc('delete_user', { user_id: id })
 
-        if (error) {
-            alert('❌ ' + error.message);
-            return;
-        }
-
-        alert('✅ User deleted successfully!');
-        loadUsers();
+    if (error) {
+        alert('❌ ' + error.message);
+        return;
     }
+
+    alert('✅ User deleted successfully!');
+    loadUsers();
+}
 
     document.getElementById('logoutBtn').addEventListener('click', function() {
         localStorage.removeItem('loggedInAdmin');

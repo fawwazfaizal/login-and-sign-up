@@ -79,3 +79,23 @@ h1 span {
     font-weight: 600;
     color: #333;
 }
+
+.delete-section {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.delete-account-btn {
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.delete-account-btn:hover {
+    background-color: darkred;
+}
